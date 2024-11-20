@@ -1,4 +1,5 @@
 # Welcome to your Expo app 👋
+![Committee.png](https://github.com/ArmanA12/CommitteeMobileAppFrontEnd/blob/master/Committee.png)
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 

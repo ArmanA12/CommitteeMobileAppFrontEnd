@@ -84,7 +84,6 @@ export default function addHafizMonthlyPayment() {
                 setAmmour('');
             } catch (error) {
                 setLoading(false);
-                console.log(error, "error from API")
                 Alert.alert('Error', error.response?.data?.message || 'Error in adding member payment');
             }
         }

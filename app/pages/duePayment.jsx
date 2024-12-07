@@ -126,7 +126,7 @@ export default function DataFetcher() {
 
   return (
     <View style={styles.container}>
-      <Header headerTitle="Due Payment"  pushRoute="(tabs)Home" />
+      <Header headerTitle="Due Payment"  pushRoute="/pages/allMemberMonthlyPaymentDetails" />
       <Text style={styles.header}>Member Payment Status</Text>
       <View style={styles.inputMain}>
         <Picker

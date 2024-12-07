@@ -30,6 +30,7 @@ export default function Login() {
         buttonPosition.value = withDelay(900, withTiming(0, { duration: 1200 }));
 
         navigation.setOptions({ headerShown: false });
+        
 
         const isUserAvailable = async () => {
 
@@ -37,9 +38,7 @@ export default function Login() {
             const tokenData = token ? JSON.parse(token) : null;
             if(tokenData){
                 setTimeout(() => {
-                    // router.replace('/pages/lockScreen');
-                    router.replace('(tabs)/Home');
-
+                    router.replace('/pages/lockScreen');
                 }, 4000);
              }
  
@@ -65,12 +64,9 @@ export default function Login() {
             try {
 
                 const res = await axios.post('https://committee-mobile-app-backend.vercel.app/api/v1/auth/login', { number });
-                console.log(res.data, "res after login")
                 await AsyncStorage.setItem('user', JSON.stringify(res.data.user));
                 await AsyncStorage.setItem('auth', "1");
-                // router.replace('/pages/lockScreen');
-                router.replace('/(tabs)/home');
-
+                router.replace('/pages/lockScreen');
             } catch (error) {
                 setLoading(false);
                 if (error.response) {

@@ -5,10 +5,13 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 import axios from 'axios';
 import FormData from 'form-data';
 import Loader from '../components/Loader'
+import * as ImageManipulator from 'expo-image-manipulator';
+
 
 const UploadProfileImage = ({ onClose, userID }) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
 
   const pickImage = async () => {
     let result = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -16,24 +19,36 @@ const UploadProfileImage = ({ onClose, userID }) => {
       Alert.alert('Permission Denied', 'Permission to access media library is required.');
       return;
     }
-
+  
     let pickerResult = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
       aspect: [1, 1],
-      quality: 1,
+      quality: 1, // Keep high quality initially
     });
-
+  
     if (!pickerResult.canceled && pickerResult.assets && pickerResult.assets.length > 0) {
-      setSelectedImage(pickerResult.assets[0].uri);
+      const originalUri = pickerResult.assets[0].uri;
+  
+      try {
+        // Compress the image
+        const compressedImage = await ImageManipulator.manipulateAsync(
+          originalUri,
+          [{ resize: { width: 800 } }],   
+          { compress: 0.7, format: ImageManipulator.SaveFormat.JPEG } 
+        );
+  
+        setSelectedImage(compressedImage.uri); 
+      } catch (error) {
+        console.error('Error compressing image:', error);
+        Alert.alert('Error', 'Failed to process the image.');
+      }
     }
   };
-
+  
   const handleUpload = async () => {
     if (!selectedImage) return;
-  
     setIsLoading(true);
-  
     const formData = new FormData();
     formData.append('userID', userID); 
     formData.append('profilePic', {
@@ -47,13 +62,9 @@ const UploadProfileImage = ({ onClose, userID }) => {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
-      });
-
-      console.log(response.data, "res from API")
-  
+      });  
         Alert.alert('Success', response.data.message);
     } catch (error) {
-      console.log(error);
       Alert.alert('Error', 'Error while uploading profile picture.');
     } finally {
       setIsLoading(false);

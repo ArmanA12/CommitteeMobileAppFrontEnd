@@ -35,7 +35,6 @@ export default function CurrentStatus() {
         });
 
         setCurrentStatus(finalArray);
-        console.log(finalArray, "Final Status Data");
       }
       setLoading(false);
     };

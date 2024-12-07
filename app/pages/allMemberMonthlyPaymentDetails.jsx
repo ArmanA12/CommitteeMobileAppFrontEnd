@@ -84,7 +84,7 @@ export default function AllMemberMonthlyPaymentDetails() {
 
   return (
     <View style={styles.container}>
-      <Header headerTitle="Member Payment Details" pushRoute={() => router.push('/(tabs)/accounts')} />
+      <Header headerTitle="Member Payment Details" pushRoute='/' />
       <ScrollView showsVerticalScrollIndicator={false}>
         <Text style={styles.header}>All Member Monthly Payments</Text>
         <View>

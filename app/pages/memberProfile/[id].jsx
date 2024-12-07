@@ -77,7 +77,7 @@ export default function MemberProfile() {
 
     return (
         <ScrollView style={styles.container}>
-            <Header headerTitle="Member Profile" pushRoute={() => router.replace('(tabs)/home')} />
+            <Header headerTitle="Member Profile" pushRoute='/pages/membersCurrentmonthPayStatus' />
 
             <View style={styles.profileImageContainer}>
                 <View style={styles.profileImageDesign}>

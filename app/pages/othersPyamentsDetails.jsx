@@ -251,9 +251,9 @@ const styles = StyleSheet.create({
     amountDecimal: { color: "#b3b3b3" },
     right: { flexDirection: 'row', justifyContent: 'center',alignItems:"center", marginTop: 10, marginRight: 5,  backgroundColor:"rgba(0,0,0,0.04)" , borderWidth:1, borderColor:"rgba(0,0,0,0.2)", borderStyle:"dashed", paddingVertical:10 },
     addPaymentText: { marginTop: 2, marginRight: 4, fontSize: 15, color: '#737373', letterSpacing:2,},
-    paymentContainer: { marginTop: 10, borderRadius: 5, backgroundColor: '#ffffff',},
+    paymentContainer: { marginTop: 10, borderRadius: 5, backgroundColor: '#ffffff'},
 
-    paymentText: { fontSize: 18, marginBottom: 5, fontWeight: '500', paddingHorizontal:10,paddingVertical:12 },
+    paymentText: { fontSize: 18, marginBottom: 5, fontWeight: '500', paddingHorizontal:10,paddingVertical:12,  },
     tableLeft: { color: '#737373', fontSize: 16, paddingLeft: 10, paddingBottom: 10 },
     table: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingTop: 10, marginTop:20, borderBottomWidth:10, borderBlockColor:"#f2f2f2" },
     editDelete: { flexDirection: 'row', alignItems: 'center', marginRight:10, marginLeft:10, marginBottom:10, backgroundColor:"rgba(0,0,0,0.04)" , borderWidth:1, borderColor:"rgba(0,0,0,0.1)", borderStyle:"dashed", paddingVertical:6,paddingHorizontal:12},

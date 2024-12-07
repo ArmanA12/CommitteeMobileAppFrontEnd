@@ -1,8 +1,6 @@
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import React from 'react';
-import { useRouter, useNavigation } from 'expo-router';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import FontAwesome from '@expo/vector-icons/FontAwesome';
+import { useRouter} from 'expo-router';
 import AntDesign from '@expo/vector-icons/AntDesign';
 
 

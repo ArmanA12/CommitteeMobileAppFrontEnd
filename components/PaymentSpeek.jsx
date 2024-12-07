@@ -146,7 +146,7 @@ export default function PaymentSpeak() {
 const styles = StyleSheet.create({
   speakerBox: {
     position: 'absolute',
-    top: 445,
+    top: 415,
     right: '2%',
     padding: 10,
     borderRadius: 10,

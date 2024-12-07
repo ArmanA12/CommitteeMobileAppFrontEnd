@@ -35,7 +35,6 @@ export default function addothersPayment() {
     };
 
     const handleSubmit = async () => {
-        console.log(ammour, notes, "amount,")
         if (validateForm()) {
             setLoading(true);
             try {

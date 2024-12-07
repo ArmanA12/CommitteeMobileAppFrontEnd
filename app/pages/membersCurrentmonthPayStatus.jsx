@@ -49,7 +49,6 @@ export default function CurrentStatus() {
         });
 
         setCurrentStatus(finalArray);
-        console.log(finalArray, "Final Status Data");
       }
       setLoading(false);
     };
@@ -182,7 +181,7 @@ export default function CurrentStatus() {
 
   return (
     <View style={styles.container}>
-      <Header headerTitle="Current Payment Status" pushRoute={() => router.replace('/(tabs)/home')} />
+      <Header headerTitle="Current Payment Status" pushRoute='/pages/allMemberMonthlyPaymentDetails' />
       {showHide && (
         <View style={styles.popupMain}>
           <View style={styles.adminPopup}>

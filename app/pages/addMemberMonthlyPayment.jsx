@@ -30,7 +30,6 @@ export default function AddMemberPayment() {
     useEffect(() => {
         const fetchMembers = async () => {
             const memberData = await getAllCommitteMember();
-            console.log(memberData, "member data");
             if (memberData) {
                 setMembers(memberData);
             }
@@ -68,14 +67,6 @@ export default function AddMemberPayment() {
     const handleSubmit = async () => {
         if (validateForm()) {
             setLoading(true);
-            console.log(
-                selectedMember,
-                selectedUserID,  // userID to be logged here
-                selectedMonth,
-                selectedYear,
-                ammour,
-                selectedUserID
-            );
             try {
                 const response = await axios.post('https://committee-mobile-app-backend.vercel.app/api/v1/auth/addMemberPayment', {
                     memberName: selectedMember,
@@ -141,7 +132,6 @@ export default function AddMemberPayment() {
                     onValueChange={(itemValue, itemIndex) => {
                         setSelectedMember(itemValue);
                         setSelectedUserID(members[itemIndex - 1]?._id || '');
-                        console.log(members[itemIndex - 1]?._id)
                     }}
                 >
                     <Picker.Item label="Select Member" value="" />

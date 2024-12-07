@@ -3,6 +3,7 @@ import { TouchableOpacity } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { useRouter, useNavigation } from 'expo-router'
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 export default function Payment() {
 
@@ -14,7 +15,7 @@ export default function Payment() {
  
     <ScrollView showsVerticalScrollIndicator={false}>
        <View style={styles.container}>
-      <Text style={{ fontSize: 33, color: "#404040", marginBottom: 2, marginTop: 80, letterSpacing: 3 }}>Account Books </Text>
+      <Text style={{ fontSize: 33, color: "#404040", marginBottom: 2, marginTop: 40, letterSpacing: 3 }}>Account Books </Text>
       <Text style={{ fontSize: 16, color: "#404040", textAlign:"center", marginBottom: 8, marginTop: 10, letterSpacing: 1 }}>Here is the all information abount Account </Text>
 
       <View style={styles.paymentmain}>
@@ -26,8 +27,8 @@ export default function Payment() {
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 1 }}
             >
-              <FontAwesome name="bookmark" size={35} color="#f2f2f2" />
-            </LinearGradient>
+              <Ionicons name="bookmarks-sharp" size={34} color="#f2f2f2" />
+              </LinearGradient>
 
             <View style={styles.textContainer}>
               <Text style={styles.title}>Member Monthly Payment Details</Text>
@@ -58,7 +59,7 @@ export default function Payment() {
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 1 }}
             >
-              <FontAwesome name="bookmark" size={35} color="#f2f2f2" />
+              <Ionicons name="bookmarks-sharp" size={34} color="#f2f2f2" />
             </LinearGradient>
 
             <View style={styles.textContainer}>
@@ -93,8 +94,8 @@ export default function Payment() {
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 1 }}
             >
-              <FontAwesome name="bookmark" size={35} color="#f2f2f2" />
-            </LinearGradient>
+              <Ionicons name="bookmarks-sharp" size={34} color="#f2f2f2" />
+              </LinearGradient>
 
             <View style={styles.textContainer}>
               <Text style={styles.title}>Others Payment Details</Text>
@@ -193,5 +194,8 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: "rgba(255,255,255,0.7)",
     marginBottom: 10,
+    borderRadius:4,
+    borderWidth:1,
+    borderColor:"rgba(0,0,0,0.02)"
   }
 });

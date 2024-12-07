@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, Alert, StyleSheet, TextInput } from 'react-native';
 import { useNavigation } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
-import FontAwesome from '@expo/vector-icons/FontAwesome';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import Loader from '../../components/Loader';
 import Header from '../../components/Header';
 import axios from 'axios';
@@ -69,7 +69,7 @@ export default function addHafizMonthlyPayment() {
         if (validateForm()) {
             setLoading(true);
             try {
-                const response = await axios.post('http://192.168.0.106:8080/api/v1/auth/addHafizPayment', {
+                const response = await axios.post('https://committee-mobile-app-backend.vercel.app/api/v1/auth/addHafizPayment', {
                     hafizName: selectedMember,
                     month: selectedMonth,
                     year: selectedYear,
@@ -129,7 +129,7 @@ export default function addHafizMonthlyPayment() {
         >
             <Header headerTitle="Add Hafiz Payment" pushRoute={handleback} />
             <View style={styles.icons}>
-                <FontAwesome style={{ marginBottom: 2 }} name="rupee" size={70} color="#008080" />
+            <MaterialIcons name="currency-rupee" size={74} color="#008080" />
             </View>
             <Text style={styles.title}>Add Hafiz Payment</Text>
 
@@ -263,7 +263,7 @@ const styles = StyleSheet.create({
         width: '100%',
         position: "relative",
         marginBottom: 20,
-        width: '100%',
+
         borderWidth: 1,
         borderColor: "rgba(0,0,0,0.1)",
         borderRadius: 3,
@@ -278,7 +278,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: "rgba(0,0,0,0.1)",
         borderRadius: 3,
-        padding: 14,
+    
         color: '#000',
         backgroundColor: "rgba(255,255,255,0.4)",
         borderStyle: "dashed"
@@ -288,9 +288,10 @@ const styles = StyleSheet.create({
     input: {
         width: '100%',
         borderRadius: 3,
-        padding: 14,
         color: '#000',
         backgroundColor: "rgba(255,255,255,0.4)",
+        height:55,
+        paddingLeft:20
 
     },
     error: {
@@ -307,9 +308,10 @@ const styles = StyleSheet.create({
         borderColor: "rgba(255,255,255,0.4)"
     },
     buttonText: {
-        color: '#FFFFF0',
+        color: '#f2f2f2',
         fontSize: 19,
-        fontWeight: "600"
+        letterSpacing:2
+    
     },
     adminPopup: {
         position: "absolute",

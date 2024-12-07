@@ -271,7 +271,7 @@ const styles = StyleSheet.create({
     inputmain: {
         width: '100%',
         position: "relative",
-        marginBottom: 20,
+        marginBottom: 2,
         width: '100%',
         borderWidth: 1,
         borderColor: "rgba(0,0,0,0.1)",
@@ -279,24 +279,26 @@ const styles = StyleSheet.create({
 
         color: '#000',
         backgroundColor: "rgba(255,255,255,0.4)",
-        borderStyle: "dashed"
+        borderStyle: "dashed",
+        marginTop:15
     },
     picker: {
         width: '100%',
         borderWidth: 1,
         borderColor: "rgba(0,0,0,0.1)",
         borderRadius: 3,
-        padding: 14,
+        padding: 1,
         color: '#000',
         backgroundColor: "rgba(255,255,255,0.4)",
-        borderStyle: "dashed"
-
+        borderStyle: "dashed",
+        
     },
     input: {
         width: '100%',
         borderRadius: 3,
         padding: 14,
         color: '#000',
+        height:55,
         backgroundColor: "rgba(255,255,255,0.4)",
 
     },
@@ -311,7 +313,8 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         alignItems: 'center',
         borderWidth: 2,
-        borderColor: "rgba(255,255,255,0.4)"
+        borderColor: "rgba(255,255,255,0.4)",
+        marginTop:25
     },
     buttonText: {
         color: "#f2f2f2",

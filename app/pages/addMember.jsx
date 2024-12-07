@@ -131,26 +131,31 @@ const styles = StyleSheet.create({
     },
     inputmain: {
         width: '100%',
-        position: "relative"
-    },
+        position: 'relative',
+        height:65,
+        marginBottom: 25,
 
+    },
     input: {
         width: '100%',
         borderTopWidth: 1,
-        borderTopColor: "rgba(0,0,0,0.02)",
+        borderTopColor: 'rgba(0,0,0,0.02)',
         borderLeftWidth: 1,
-        borderLeftColor: "rgba(0,0,0,0.02)",
+        borderLeftColor: 'rgba(0,0,0,0.02)',
         borderBottomWidth: 1,
-        borderBottomColor: "rgba(0,0,0,0.03)",
+        borderBottomColor: 'rgba(0,0,0,0.03)',
         borderRightWidth: 1,
-        borderRightColor: "rgba(0,0,0,0.03)",
+        borderRightColor: 'rgba(0,0,0,0.03)',
         borderRadius: 3,
-        marginBottom: 25,
+        
         color: '#000',
-        backgroundColor: "rgba(255,255,255,0.4)",
+        backgroundColor: 'rgba(255,255,255,0.4)',
         paddingLeft: 39,
-        paddingTop: 14,
-        paddingBottom: 14
+        
+        height:60,
+        letterSpacing:2,
+        
+        
 
     },
     error: {

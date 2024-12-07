@@ -4,6 +4,8 @@ import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import Entypo from '@expo/vector-icons/Entypo';
 import { useNavigation } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { NavigationContainer } from "@react-navigation/native";
+
 
 
 
@@ -15,6 +17,7 @@ export default function TabLayout() {
 
 
   return (
+    <NavigationContainer>
     <Tabs
       screenOptions={{
 
@@ -67,6 +70,7 @@ export default function TabLayout() {
         }}
       />
     </Tabs>
+    </NavigationContainer>
 
   );
 }

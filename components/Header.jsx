@@ -11,14 +11,14 @@ export default function Header({ headerTitle, pushRoute }) {
   const handleBack = () => {
     if (pushRoute) {
       console.log(pushRoute, "push route")
-      router.replace(pushRoute);
+      router.push(pushRoute);
     } else {
       try {
         console.log("back called")
-        router.replace(pushRoute);
+        router.push(pushRoute);
       } catch (error) {
         console.warn("GO_BACK not handled, navigating to default screen.");
-        router.push('/home');
+        router.push(pushRoute);
       }
     }
   };
@@ -41,12 +41,12 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     width: "105%",
-    paddingTop: 40,
+    paddingTop: 30,
     paddingBottom: 8,
     paddingHorizontal: 13,
     backgroundColor: '#f2f2f2',
     position: "absolute",
-    top: 15,
+    top:15,
     zIndex: 1000000
   },
   leftContainer: {

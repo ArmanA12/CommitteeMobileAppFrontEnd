@@ -213,9 +213,9 @@ const styles = StyleSheet.create({
         borderColor: "rgba(255,255,255,0.4)"
     },
     buttonText: {
-        color: '#FFFFF0',
+        color: '#f2f2f2',
         fontSize: 19,
-        fontWeight: "600"
+        letterSpacing:2
     },
     adminPopup: {
         position: "absolute",

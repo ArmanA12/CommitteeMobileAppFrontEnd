@@ -1,40 +1,48 @@
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { useNavigation, useRouter } from 'expo-router';
-import { getAllMemberMonthlyPaymentDetails, membersAmountCalculator } from '../../api/api';
+import { getAllMemberMonthlyPaymentDetails, membersAmountCalculator, getCurrentMonthYear } from '../../api/api';
 import Header from '../../components/Header';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { TouchableOpacity } from 'react-native';
+import Feather from '@expo/vector-icons/Feather';
+import { Picker } from '@react-native-picker/picker';
 
 export default function AllMemberMonthlyPaymentDetails() {
   const navigation = useNavigation();
   const router = useRouter();
-  const [allmembermonthlyData, setAllMemberMonthlyData] = useState([]);
+  const [allMemberMonthlyData, setAllMemberMonthlyData] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [selectedYear, setSelectedYear] = useState('');
 
-  const dummy = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11,12,13,14,15];
+  const dummy = Array.from({ length: 15 }, (_, i) => i + 1);
 
   useEffect(() => {
     navigation.setOptions({ headerShown: false });
 
     const fetchMembers = async () => {
+      setLoading(true);
       const memberData = await getAllMemberMonthlyPaymentDetails();
-      const resamount = await membersAmountCalculator();
+      const resAmount = await membersAmountCalculator();
+
       if (memberData) {
         setAllMemberMonthlyData(memberData);
-        setTotalAmount(resamount);
+        setTotalAmount(resAmount);
       }
       setLoading(false);
     };
 
     fetchMembers();
-  }, [navigation]);
+  }, []);
+
+  useEffect(() => {
+    const { currentYear } = getCurrentMonthYear();
+    setSelectedYear(currentYear.toString());
+  }, []);
 
   const months = [
-    'June', 'July', 'August',
-    'September', 'October', 'November',
-    'December', 'Due Amount'
+    'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
+    'September', 'October', 'November', 'December', 'Due Amount'
   ];
 
   const getPaymentStatusForMonth = (payments, month) => {
@@ -44,44 +52,44 @@ export default function AllMemberMonthlyPaymentDetails() {
 
   const calculateDueAmount = (payments) => {
     const monthlyPayment = 500;
-    const totalMonths = 6;
+    const totalMonths = 12;
     let paidMonthsCount = payments.filter(payment => payment.amount && parseInt(payment.amount) > 0).length;
     let dueMonthsCount = totalMonths - paidMonthsCount;
     return dueMonthsCount * monthlyPayment;
   };
 
-  const groupByMember = allmembermonthlyData.reduce((acc, payment) => {
-    const { memberName } = payment;
-    if (!acc[memberName]) {
-      acc[memberName] = [];
-    }
-    acc[memberName].push(payment);
-    return acc;
-  }, {});
+  const groupByMember = allMemberMonthlyData
+    .filter(item => item.year === selectedYear)
+    .reduce((acc, payment) => {
+      const { memberName } = payment;
+      if (!acc[memberName]) {
+        acc[memberName] = [];
+      }
+      acc[memberName].push(payment);
+      return acc;
+    }, {});
 
   if (loading) {
     return (
       <View style={{ marginTop: 100, padding: 16 }}>
-        <View>
-          {dummy.map((index) => (
-            <View key={index} style={styles.loadingPlaceholder}>
-              <View style={styles.loadingBlock}></View>
-              <View style={styles.loadingBlock}></View>
-            </View>
-          ))}
-        </View>
+        {dummy.map((index) => (
+          <View key={index} style={styles.loadingPlaceholder}>
+            <View style={styles.loadingBlock}></View>
+            <View style={styles.loadingBlock}></View>
+          </View>
+        ))}
       </View>
     );
   }
 
   return (
     <View style={styles.container}>
-      <Header headerTitle=" Member Payment Details" pushRoute={() => router.replace('/(tabs)/home')} />
+      <Header headerTitle="Member Payment Details" pushRoute={() => router.push('/(tabs)/accounts')} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <Text style={styles.header}>All Member Monthly Payments</Text>
         <View>
           <View style={styles.amountDetails}>
-            <Text style={{ fontFamily: "Cairo-SemiBold", fontSize: 20, letterSpacing: 3, color: "#008080" }}>Total Balance</Text>
+            <Text style={{ fontFamily: "Cairo-SemiBold", fontSize: 20, letterSpacing: 3, color: "#008080", paddingVertical: 4 }}>Total Balance</Text>
             <Text style={{ fontSize: 45, color: "#737373", letterSpacing: 2 }}>₹ {totalAmount}.<Text style={{ color: "#b3b3b3" }}>00</Text></Text>
 
             <View>
@@ -102,32 +110,60 @@ export default function AllMemberMonthlyPaymentDetails() {
           </View>
         </View>
 
-        {Object.keys(groupByMember).map((memberName, index) => (
+        <Text style={styles.sectionTitle}>Year Wise Payment Data</Text>
+        <View style={styles.inputMain}>
+          <Picker
+            selectedValue={selectedYear}
+            style={styles.picker}
+            onValueChange={(itemValue) => setSelectedYear(itemValue)}
+          >
+            <Picker.Item label="Select Year" value="" />
+            {Array.from({ length: 5 }, (_, i) => new Date().getFullYear() - i).map((year) => (
+              <Picker.Item key={year} label={String(year)} value={String(year)} />
+            ))}
+          </Picker>
+        </View>
+
+
+        {
+          Object.keys(groupByMember).length > 0 ? (
+                    Object.keys(groupByMember).map((memberName, index) => (
           <View key={index} style={styles.memberSection}>
             <View style={styles.memberHeader}>
-              <FontAwesome name="user-circle-o" size={30} color="#595959" />
+              <Feather name="user" size={26} color="#f2f2f2" />
               <Text style={styles.memberName}>{memberName}</Text>
             </View>
             <View style={styles.table}>
               {months.map((month, i) => (
                 <View key={i} style={[styles.row, month === 'Due Amount' && styles.dueAmountRow]}>
                   <Text style={styles.month}>{month}</Text>
-
                   {month === 'Due Amount' ? (
                     <Text style={styles.amount}>{calculateDueAmount(groupByMember[memberName])}</Text>
                   ) : (
-
                     <Text style={styles.amount}>{getPaymentStatusForMonth(groupByMember[memberName], month)}</Text>
                   )}
                 </View>
               ))}
             </View>
           </View>
-        ))}
+        ))
+
+          ) : 
+          <View style={{flexDirection:"column", justifyContent:"center", alignItems:"center", borderWidth:1, borderColor:"rgba(0,0,0,0.01)", borderRadius:10, paddingVertical:25, backgroundColor:"white", gap:15}}>
+            <View style={{flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
+            <FontAwesome name="question-circle-o" size={70} color="#ff4d4d" />
+            </View>
+          <Text style={styles.noDataText}>Now Payment Data for This Years
+          </Text>
+          </View>
+        }
+
       </ScrollView>
     </View>
   );
 }
+
+
 
 const styles = StyleSheet.create({
   container: {
@@ -135,6 +171,28 @@ const styles = StyleSheet.create({
     backgroundColor: '#f2f2f2',
     padding: 16,
   },
+  sectionTitle: {
+    color: "#737373",
+    letterSpacing: 2,
+    marginTop: 16,
+    marginBottom: 8,
+},
+noDataText:{
+  color: "#737373",
+  letterSpacing: 2,
+  marginTop: 16,
+  marginBottom: 8,
+
+},
+inputMain: {
+  marginBottom: 10,
+  backgroundColor: "white",
+  borderColor: '#ddd',
+  borderRadius: 3,
+  borderWidth: 1,
+  borderColor: "rgba(0,0,0,0.02)"
+},
+
 
   // Styles for loading placeholders
   loadingPlaceholder: {
@@ -157,14 +215,14 @@ const styles = StyleSheet.create({
 
   memberSection: {
     marginBottom: 30,
-    borderWidth: 1,
-    borderColor: "rgba(0,0,0,0.01)",
-    borderRadius: 5
+    borderWidth: 2,
+    borderColor: "rgba(255,255,255,0.4)",
+    borderRadius: 2
   },
   memberHeader: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "rgba(255,255,255,0.9)",
+    backgroundColor: "#008080",
     paddingHorizontal: 10,
 
   },
@@ -173,10 +231,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     paddingHorizontal: 10,
     paddingVertical: 13,
-    letterSpacing: 2,
+    letterSpacing: 3,
     borderBottomWidth: 1,
     borderBottomColor: "rgba(0,0,0,0.03)",
-    backgroundColor: "rgba(255,255,255,0.9)"
+    color:"#f2f2f2"
   },
   table: {
     backgroundColor: '#fff',
@@ -185,35 +243,37 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingVertical: 9,
+    paddingVertical: 12,
     borderBottomWidth: 1,
-    borderBottomColor: "rgba(0,0,0,0.03)",
+    borderBottomColor: "rgba(0,0,0,0.1)",
+    borderStyle:"dashed",
+    
 
   },
   dueAmountRow: {
-    backgroundColor: "rgba(0,0,0,0.03)",
+    backgroundColor: "rgba(0,0,0,0.06)",
     paddingHorizontal: 8,
     paddingVertical: 15,
-    borderRadius: 5,
+    borderRadius: 1,
     marginTop: 5,
     marginBottom:10,
-    borderWidth:1,
-    borderColor:"#008080",
-    borderStyle:"dashed"
+    letterSpacing:2
   },
   month: {
     fontSize: 16,
     color: '#333',
+    letterSpacing:2
   },
   amount: {
     fontSize: 16,
     color: '#333',
+    letterSpacing:2
   },
   amountDetails: {
     borderWidth: 1,
     marginTop: 10,
     paddingHorizontal: 20,
-    paddingVertical: 7,
+    paddingVertical: 18,
     borderRadius: 17,
     borderColor: "rgba(0,0,0,0.03)",
     position: "relative",

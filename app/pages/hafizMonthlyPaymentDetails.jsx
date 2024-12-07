@@ -4,6 +4,8 @@ import { useNavigation, useRouter } from 'expo-router';
 import Header from '../../components/Header';
 import { getAllHafizMonthlyPaymentDetails, hafizAmountCalculator } from '../../api/api';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
+import Feather from '@expo/vector-icons/Feather';
+
 
 
 export default function HafizMonthlyPaymentDetails() {
@@ -30,7 +32,7 @@ export default function HafizMonthlyPaymentDetails() {
       <Header headerTitle="Hafiz Payment Details" pushRoute={() => router.replace('/(tabs)/home')} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.header}>
-          <Text style={{ textAlign: "center", fontWeight: "bold", fontSize: 23, color: "#008080", marginTop: 30 }}>Hafiz Monthly Payment Details</Text>
+          <Text style={{ textAlign: "center", fontWeight: "bold", fontSize: 23, color: "#008080", marginTop: 1 }}>Hafiz Monthly Payment Details</Text>
           <View>
             <View style={styles.amountDetails}>
               <Text style={{ fontFamily: "Cairo-SemiBold", fontSize: 20, letterSpacing: 3, color: "#000" }}>Total Balance</Text>
@@ -46,23 +48,24 @@ export default function HafizMonthlyPaymentDetails() {
             </View>
             
           </View>
-
+          <Text style={styles.sectionTitle}>Monthly Payment Status</Text>
           <View style={styles.paymentContainer}>
             {
               hafiz.map((item, index) => {
                 return (
                   <View style={styles.payment} key={index}>
                     <View style={styles.table}>
-                      <Text style={styles.tableLeft}><FontAwesome name="user-circle-o" size={20} color="#595959" />&nbsp;Hafiz Name</Text>
+                      <Text style={styles.tableLeft}><Feather name="user" size={20} color="#595959" />
+                      &nbsp;Hafiz Name</Text>
                       <Text style={styles.tableLeft}>{item.hafizName}</Text>
                     </View>
                     <View style={styles.table}>
-                      <Text style={styles.tableLeft}><FontAwesome name="calendar" size={20} color="#595959" />&nbsp;Month</Text>
-                      <Text style={styles.tableLeft}>{item.month}</Text>
+                      <Text style={styles.tableLeft}><FontAwesome name="calendar" size={16} color="#595959" />&nbsp;Month</Text>
+                      <Text style={styles.tableLeft}>{item.month} {item.year}</Text>
                     </View>
                     <View style={styles.table}>
                       <Text style={styles.tableLeft}><FontAwesome name="rupee" size={18} color="#595959" />&nbsp;&nbsp;Amount</Text>
-                      <Text style={{ fontSize: 18, fontWeight: "bold", color: "#008080" }}>₹&nbsp;{item.amount}</Text>
+                      <Text style={{ fontSize: 18, fontWeight: "bold", color: "#008080", letterSpacing:2 }}>₹&nbsp;{item.amount}</Text>
                     </View>
 
                   </View>
@@ -101,35 +104,38 @@ const styles = StyleSheet.create({
     position: "relative",
     backgroundColor: "rgba(255,255,255,0.7)",
     marginBottom: 2,
-    borderStyle: 'dashed',
 
   },
 
-  paymentContainer: {
-    marginTop: 20,
-    backgroundColor: "rgba(255,255,255,0.8)",
-
-  },
   payment: {
-    padding: 10,
-    paddingVertical: 10,
-    borderBottomColor: "rgba(0,0,0,0.04)",
-    borderBottomWidth: 8,
-    marginTop: 6
+    marginBottom: 16,
+    borderEndStartRadius:10,
+    borderTopLeftRadius:10,
+    overflow:"hidden"
 
 
   },
   table: {
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingVertical: 10,
+    paddingVertical: 20,
     borderBottomWidth: 1,
-    borderBottomColor: "rgba(0,0,0,0.0)"
-
+    borderBottomColor: "rgba(0,0,0,0.1)",
+    borderStyle:"dashed",
+    paddingHorizontal:13,
+    backgroundColor:"rgba(255,255,255,0.8)",
   },
+  sectionTitle: {
+    color: "#737373",
+    letterSpacing: 2,
+    marginTop: 20,
+    marginBottom: 8,
+},
+
   tableLeft: {
-    fontSize: 18,
-    color: "#666666"
+    fontSize: 16,
+    letterSpacing:1,
+    color: "#666666",
   },
   right: { flexDirection: 'row', justifyContent: 'center',alignItems:"center", marginTop: 10, marginRight: 5,  backgroundColor:"rgba(0,0,0,0.04)" , borderWidth:1, borderColor:"rgba(0,0,0,0.2)", borderStyle:"dashed", paddingVertical:10 },
   addPaymentText: { marginTop: 2, marginRight: 4, fontSize: 15, color: '#737373', letterSpacing:2,},

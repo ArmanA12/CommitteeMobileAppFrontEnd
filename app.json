@@ -53,6 +53,12 @@
         {
           "microphonePermission": "$(PRODUCT_NAME) would like to use your microphone for voice recording."
         }
+      ],
+      [
+        "expo-font",
+        {
+          "fonts": ["./assets/fonts/Cairo-ExtraLight.ttf"]
+        }
       ]
     ],
     "experiments": {

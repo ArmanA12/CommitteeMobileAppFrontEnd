@@ -10,7 +10,6 @@ import { membersAmountCalculator, hafizAmountCalculator, getAllCommitteMember } 
 import Feather from '@expo/vector-icons/Feather';
 
 
-
 export default function Home() {
 
   const navigation = useNavigation();
@@ -55,7 +54,7 @@ export default function Home() {
           >
             <BlurView intensity={7} tint="light" style={styles.blurContainer}>
 
-              <Text style={styles.kalma}><Text style={{ fontFamily: "Cairo-SemiBold" }}>لَا إِلَٰهَ إِلَّا ٱللَّٰهُ مُحَمَّدٌ رَّسُولُ ٱللَّٰهِ</Text></Text>
+              <Text style={styles.kalma}><Text style={{ fontFamily: "MartianMono_Condensed-ExtraBold",}}>لَا إِلَٰهَ إِلَّا ٱللَّٰهُ مُحَمَّدٌ رَّسُولُ ٱللَّٰهِ</Text></Text>
 
               <View
 
@@ -69,7 +68,7 @@ export default function Home() {
                 <View>
 
                   <Text style={styles.totalAmount}>
-                    <Text style={{ fontFamily: "MartianMono_Condensed-ExtraBold", letterSpacing: 3 }}>{totalAmount}</Text>
+                    <Text style={{fontFamily: "Cairo-SemiBold",  letterSpacing: 3 }}>{totalAmount}</Text>
                   </Text>
                   <Text style={styles.totatext}><Text style={{ fontFamily: "Cairo-SemiBold" }}>Total Amount</Text></Text>
                 </View>
@@ -77,59 +76,37 @@ export default function Home() {
             </BlurView>
             <View style={{marginTop:8}}>
             <CurrentStatus />
-
             </View>
             <View style={{height:45}}></View>
-
           </LinearGradient>
-
         </View>
 
         <View style={{height:45}}></View>
-
-
-
-
         <View style={{ padding: 10 }}>
           <Text style={{ fontFamily: "Cairo-SemiBold", fontSize: 20, letterSpacing: 3, color: "#b3b3b3", marginLeft: 10 }}>Account Card*</Text>
-
           <View style={styles.amountDetails}>
             <Text style={{ fontFamily: "Cairo-SemiBold", fontSize: 20, letterSpacing: 3, color: "#008080" }}>Current Balance</Text>
             <Text style={{ fontSize: 45, color: "#737373", letterSpacing: 2 }}>₹ {totalAmount - totalHafizAmout}.<Text style={{ color: "#b3b3b3" }}>00</Text></Text>
-
             <Text style={{ fontFamily: "Cairo-SemiBold", fontSize: 13, color: "#737373", marginTop: 8, letterSpacing: 1 }}>Expense on Hafi-G</Text>
             <Text style={{ fontSize: 18, color: "#737373", letterSpacing: 2 }}>₹ {totalHafizAmout}.<Text style={{ color: "#b3b3b3" }}>000</Text></Text>
-
             <View style={styles.right}>
               <FontAwesome name="angle-double-right" size={22} color="#737373" />
             </View>
-
           </View>
-
         </View>
-
-
-
-
-
-
-
         <View style={styles.memberandrules}>
         <LinearGradient
             style={{ padding: 4, borderRadius: 100, width: 60, height:60, borderWidth: 1, borderColor: "rgba(0,0,0,0.01)",flexDirection:"row", justifyContent:"center", alignItems:"center", borderStyle:"dashed" }}
             colors={['#f1f1f1', '#f1f1f1', '#e0e0eb']}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 1 }}
-
           >
             <TouchableOpacity onPress={() => router.replace('/pages/membersCurrentmonthPayStatus')}>
               <View style={styles.rulesbox}>
                 <FontAwesome name="users" size={27} color="#008080" />                
               </View>
             </TouchableOpacity>
-
           </LinearGradient>
-
           <LinearGradient
             style={{ padding: 4, borderRadius: 100, width: 60, height:60, borderWidth: 2, borderColor: "rgba(255,255,255,0.5)",flexDirection:"row", justifyContent:"center", alignItems:"center" }}
             colors={['#008080', '#008080', '#008080']}
@@ -142,9 +119,7 @@ export default function Home() {
             <Feather name="plus" size={27} color="#f2f2f2" />
             </View>
             </TouchableOpacity>
-
           </LinearGradient>
-
           <LinearGradient
             style={{ padding: 4, borderRadius: 100, width: 60, height:60, borderWidth: 1, borderColor: "rgba(0,0,0,0.01)",flexDirection:"row", justifyContent:"center", alignItems:"center", borderStyle:"dashed" }}
             colors={['#f1f1f1', '#f1f1f1', '#e0e0eb']}
@@ -154,26 +129,11 @@ export default function Home() {
           >
             <TouchableOpacity onPress={() => router.replace('/pages/rulesAndRegulation')}>
               <View style={styles.rulesbox}>
-
                 <FontAwesome name="legal" size={27} color="#008080" />
-
               </View>
             </TouchableOpacity>
-
           </LinearGradient>
         </View>
-
-
-
-
-
-
-
-
-
-
-
-
       </View>
 
     </View>
@@ -188,7 +148,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f2f2f2',
   },
   blurContainer: {
-    marginTop: 60,
+    marginTop: 40,
     borderTopWidth: 1,
     borderTopColor: "rgba(255,255,255,0.2)",
     borderBottomWidth: 1,
@@ -199,6 +159,7 @@ const styles = StyleSheet.create({
     borderRightColor: "rgba(255,255,255,0.2)",
 
     borderRadius: 4,
+    paddingVertical:20
 
 
 
@@ -220,25 +181,25 @@ const styles = StyleSheet.create({
   rupeee: {
     fontSize: 100,
     fontWeight: "900",
-    color: "#f2f2f2",
-    textShadowColor: '#737373',
+    color: "rgba(255,255,255,0.8)",
+    textShadowColor: '#006666',
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 4,
 
   },
   totalAmount: {
     fontSize: 50,
-    fontWeight: "900",
-    color: "#f2f2f2",
-    textShadowColor: '#737373',
+    fontWeight: "800",
+    color: "rgba(255,255,255,0.8)",
+    textShadowColor: '#006666',
     textShadowOffset: { width: 2, height: 2 },
-    textShadowRadius: 4,
+    textShadowRadius: 6,
   },
   totatext: {
     fontSize: 20,
     fontWeight: "900",
-    color: "#f2f2f2",
-    textShadowColor: 'gray',
+    color: "rgba(255,255,255,0.8)",
+    textShadowColor: '#006666',
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 2,
     marginLeft: 10,
@@ -248,14 +209,13 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: "center",
     fontWeight: "900",
-    color: "#f2f2f2",
-    textShadowColor: '#404040',
+    color: "rgba(255,255,255,0.8)",
+    textShadowColor: '#006666',
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 2,
     marginLeft: 10,
     letterSpacing: 6,
-    padding: 10
-
+  
   },
   memberandrules: {
     width:"100%",
@@ -265,7 +225,7 @@ const styles = StyleSheet.create({
     gap: 5,
     marginTop:8,
     position:"absolute",
-    top:355
+    top:325,
   },
   amountDetails: {
     borderWidth: 1,

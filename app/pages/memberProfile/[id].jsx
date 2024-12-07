@@ -2,46 +2,54 @@ import { View, Text, StyleSheet, Alert, Image, TouchableOpacity, ScrollView } fr
 import React, { useEffect, useState } from 'react';
 import { useNavigation, useLocalSearchParams, useRouter } from 'expo-router';
 import Header from '../../../components/Header';
-import { getMemberProfileData, getAllMemberMonthlyPaymentDetails } from '../../../api/api';
+import { getMemberProfileData, getCurrentMonthYear, getMemberDataByIDAndYear } from '../../../api/api';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import UploadProfileImage from '../../../components/ProfileImageUploader';
+import { Picker } from '@react-native-picker/picker';
+
 
 export default function MemberProfile() {
-    const { id } = useLocalSearchParams(); 
+    const { id } = useLocalSearchParams();
     const router = useRouter();
     const [userProfile, setUserProfile] = useState({});
     const navigation = useNavigation();
     const [showImageUploader, setShowImageUploader] = useState(false);
     const [memberAllMonthPayment, setMemberAllMonthPayment] = useState([]);
     const [counter, setCounter] = useState(0);
+    const [selectedYear, setSelectedYear] = useState('');
 
     useEffect(() => {
         navigation.setOptions({ headerShown: false });
+        const { currentYear } = getCurrentMonthYear();
+        const year = selectedYear || currentYear;
         const profileFetcher = async () => {
             try {
                 const res = await getMemberProfileData(id);
-                const paymentMemberResult = await getAllMemberMonthlyPaymentDetails();
-                console.log(paymentMemberResult, "Full Payment details fetched");
+                const paymentMemberResult = await getMemberDataByIDAndYear(id, year);
+                if (paymentMemberResult.length === 0) {
+                    Alert.alert("Success", `Not Data Available for This Year ${selectedYear
+
+                        }`)
+                }
                 setMemberAllMonthPayment(paymentMemberResult);
                 setUserProfile(res);
-                console.log(res, "member profile");
             } catch (error) {
                 Alert.alert("Unable to Fetch Member Profile");
             }
         };
         profileFetcher();
-    }, [showImageUploader]);
+    }, [showImageUploader, selectedYear]);
 
 
-    
+
 
     const renderMonthlyPaymentStatus = () => {
         const months = [
             'January', 'February', 'March', 'April', 'May', 'June',
             'July', 'August', 'September', 'October', 'November', 'December'
         ];
-    
+
         return months.map((month, index) => {
             const paymentDetail = memberAllMonthPayment.find(item => item.userID === id && item.month === month);
             return (
@@ -62,11 +70,11 @@ export default function MemberProfile() {
                 return total + 1;
             }
             return total;
-        }, 0); 
+        }, 0);
 
-        setCounter(count); 
+        setCounter(count);
     }, [memberAllMonthPayment, id]);
-    
+
     return (
         <ScrollView style={styles.container}>
             <Header headerTitle="Member Profile" pushRoute={() => router.replace('(tabs)/home')} />
@@ -115,7 +123,7 @@ export default function MemberProfile() {
                             <FontAwesome5 name="rupee-sign" size={28} color="#008080" />
                         </View>
                         <Text style={styles.amountLabel}>Paid Amount</Text>
-                        <Text style={styles.amountValue}>₹{counter*500}</Text>
+                        <Text style={styles.amountValue}>₹{counter * 500}</Text>
                     </View>
 
                     <View style={styles.mobileNameAmount}>
@@ -124,7 +132,7 @@ export default function MemberProfile() {
                         </View>
                         <Text style={styles.amountLabel}>Pending Amount</Text>
                         <Text style={styles.amountValue}>₹{12 * 500 - counter * 500}</Text>
-                        </View>
+                    </View>
                 </View>
             </View>
 
@@ -140,8 +148,21 @@ export default function MemberProfile() {
             <View>
                 {showImageUploader && <UploadProfileImage onClose={() => setShowImageUploader(false)} userID={userProfile._id} />}
             </View>
-           <Text style={{height:30}}>&nbsp;</Text>
+            <Text style={{ height: 30 }}>&nbsp;</Text>
             <Text style={styles.sectionTitle}>Monthly Payment Status</Text>
+            <View style={styles.inputMain}>
+                <Picker
+                    selectedValue={selectedYear}
+                    style={styles.picker}
+                    onValueChange={(itemValue) => setSelectedYear(itemValue)}
+                >
+                    <Picker.Item label="Select Year" value="" />
+                    {Array.from({ length: 3 }, (_, i) => new Date().getFullYear() - i).map((year) => (
+                        <Picker.Item key={year} label={String(year)} value={String(year)} />
+                    ))}
+                </Picker>
+            </View>
+
             <View style={styles.monthlyPaymentContainer}>
                 {renderMonthlyPaymentStatus()}
             </View>
@@ -209,24 +230,24 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         paddingVertical: 15,
-        backgroundColor:"rgba(255,255,255,0.6)",
-        paddingHorizontal:10,
-        borderBottomWidth:1,
-        borderBottomColor:"rgba(0,0,0,0.2)",
-        borderStyle:"dashed"
+        backgroundColor: "rgba(255,255,255,0.6)",
+        paddingHorizontal: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: "rgba(0,0,0,0.2)",
+        borderStyle: "dashed"
     },
     monthText: {
         color: "#737373",
         fontSize: 16,
-        letterSpacing:2
+        letterSpacing: 2
     },
     paymentStatusText: {
         color: "#737373",
         fontSize: 16,
-        letterSpacing:1
+        letterSpacing: 1
 
     },
-    rupee:{
+    rupee: {
         backgroundColor: "rgba(255,255,255,0.9)",
         borderWidth: 1,
         borderRadius: 100,
@@ -236,12 +257,12 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.11,
         shadowRadius: 4,
         elevation: 3,
-        width:60,
-        height:60,
-        flexDirection:"row",
-        justifyContent:"center",
-        alignItems:"center"
-    
+        width: 60,
+        height: 60,
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center"
+
     },
     mobileNameAmount: {
         flexDirection: "column",
@@ -258,8 +279,8 @@ const styles = StyleSheet.create({
         color: "#737373",
         fontSize: 15,
         textAlign: "center",
-        paddingVertical:10,
-        letterSpacing:1
+        paddingVertical: 10,
+        letterSpacing: 1
     },
     amountValue: {
         color: "#737373",
@@ -268,7 +289,7 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         textAlign: "center",
         width: "100%",
-        letterSpacing:3
+        letterSpacing: 3
 
     },
     uploadContainer: {
@@ -287,7 +308,15 @@ const styles = StyleSheet.create({
         color: "#737373",
         fontSize: 18,
         marginLeft: 10,
-        letterSpacing:3
-
+        letterSpacing: 3
     },
+    inputMain: {
+        marginBottom: 10,
+        backgroundColor: "white",
+        borderColor: '#ddd',
+        borderRadius: 3,
+        borderWidth: 1,
+        borderColor: "rgba(0,0,0,0.02)"
+    },
+
 });

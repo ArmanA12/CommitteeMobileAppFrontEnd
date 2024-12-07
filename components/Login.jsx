@@ -37,7 +37,9 @@ export default function Login() {
             const tokenData = token ? JSON.parse(token) : null;
             if(tokenData){
                 setTimeout(() => {
-                    router.replace('/pages/lockScreen');
+                    // router.replace('/pages/lockScreen');
+                    router.replace('(tabs)/Home');
+
                 }, 4000);
              }
  
@@ -61,11 +63,14 @@ export default function Login() {
         if (validateForm()) {
             setLoading(true);
             try {
+
                 const res = await axios.post('https://committee-mobile-app-backend.vercel.app/api/v1/auth/login', { number });
                 console.log(res.data, "res after login")
                 await AsyncStorage.setItem('user', JSON.stringify(res.data.user));
                 await AsyncStorage.setItem('auth', "1");
-                router.replace('/pages/lockScreen');
+                // router.replace('/pages/lockScreen');
+                router.replace('/(tabs)/home');
+
             } catch (error) {
                 setLoading(false);
                 if (error.response) {
@@ -154,7 +159,7 @@ const styles = StyleSheet.create({
         width: 210,
         height: 210,
         objectFit: 'contain',
-        marginBottom: 20,
+        marginBottom: 1,
     },
     title: {
         fontSize: 24,
@@ -165,6 +170,9 @@ const styles = StyleSheet.create({
     inputmain: {
         width: '100%',
         position: 'relative',
+        height:65,
+        marginBottom: 25,
+
     },
     input: {
         width: '100%',
@@ -177,12 +185,16 @@ const styles = StyleSheet.create({
         borderRightWidth: 1,
         borderRightColor: 'rgba(0,0,0,0.03)',
         borderRadius: 3,
-        marginBottom: 25,
+        
         color: '#000',
         backgroundColor: 'rgba(255,255,255,0.4)',
         paddingLeft: 39,
-        paddingTop: 14,
-        paddingBottom: 14,
+        
+        height:60,
+        letterSpacing:2,
+        
+        
+
     },
     error: {
         color: 'red',

@@ -237,7 +237,6 @@ const styles = StyleSheet.create({
     width: 150,
     height: 140,
     objectFit: "fill",
-    borderWidth: 1
   },
   downloadqrcode: {
     padding: 8,

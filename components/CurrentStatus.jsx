@@ -97,7 +97,7 @@ export default function CurrentStatus() {
               {currentItem.profilePic ? (
                 <View style={styles.imageContainer}>
                   <Image
-                    style={{ width: 50, height: 50, borderRadius: 100, padding: 4, borderWidth: 3, borderColor: "rgba(0,0,0,0.03)", borderStyle: "dashed", backgroundColor: "rgba(255,255,255,0.6)" }}
+                    style={{ width: 50, height: 50, borderRadius: 100, borderWidth: 1, borderColor: "rgba(0,0,0,0.03)", borderStyle: "dashed", backgroundColor: "rgba(255,255,255,0.6)" }}
                     source={{ uri: currentItem.profilePic }} />
                 </View>
               ) : (
@@ -127,8 +127,6 @@ const styles = StyleSheet.create({
   },
   card: {
     marginTop: 8,
-    borderRadius: 20,
-    boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px',
   },
   slideContainer: {
     width: '100%',
@@ -153,8 +151,7 @@ const styles = StyleSheet.create({
     width: 60,
     backgroundColor: 'rgba(255,255,255,0.4)',
     borderRadius: 30,
-    padding: 3,
-    boxShadow: '0px 0px 5px rgba(0,0,0,0.2)',
+  
   },
   text: {
     fontSize: 16,

@@ -252,6 +252,16 @@ const styles = StyleSheet.create({
     right: { flexDirection: 'row', justifyContent: 'center',alignItems:"center", marginTop: 10, marginRight: 5,  backgroundColor:"rgba(0,0,0,0.04)" , borderWidth:1, borderColor:"rgba(0,0,0,0.2)", borderStyle:"dashed", paddingVertical:10 },
     addPaymentText: { marginTop: 2, marginRight: 4, fontSize: 15, color: '#737373', letterSpacing:2,},
     paymentContainer: { marginTop: 10, borderRadius: 5, backgroundColor: '#f2f2f2'},
+    payment:{
+        backgroundColor:"rgba(255,255,255,0.8)",
+        borderRadius:10,
+        borderLeftWidth:1,
+        borderTopWidth:1,
+        borderRightWidth:1,
+        borderLeftColor:"rgba(0,0,0,0.03)",
+        borderRightColor:"rgba(0,0,0,0.03)",
+        borderTopColor:"rgba(0,0,0,0.03)"
+    },
 
     paymentText: { fontSize: 18, marginBottom: 5, fontWeight: '500', paddingHorizontal:10,paddingVertical:12,  },
     tableLeft: { color: '#737373', fontSize: 16, paddingLeft: 10, paddingBottom: 10 },

@@ -52,6 +52,12 @@ export default function Home() {
             colors={['#008080', '#e0e0eb']}
 
           >
+            <View style={{backgroundColor:"rgba(255,255,255,0.1)", width:90, textAlign:"center", position:"absolute", zIndex:1, top:15, left:10, borderTopRightRadius:15, borderTopLeftRadius:10, borderLeftWidth:1, borderLeftColor:"rgba(255,255,255,0.3)",
+              borderTopWidth:1, borderTopColor:"rgba(255,255,255,0.3)",
+              borderRightWidth:1, borderRightColor:"rgba(255,255,255,0.3)"
+            }}>
+              <Text style={{fontWeight:900, textAlign:"center", letterSpacing:5,paddingVertical:3,color: "rgba(255,255,255,0.8)"}}>786</Text>
+            </View>
             <BlurView intensity={7} tint="light" style={styles.blurContainer}>
 
               <Text style={styles.kalma}><Text style={{ fontFamily: "MartianMono_Condensed-ExtraBold",}}>لَا إِلَٰهَ إِلَّا ٱللَّٰهُ مُحَمَّدٌ رَّسُولُ ٱللَّٰهِ</Text></Text>
@@ -149,17 +155,18 @@ const styles = StyleSheet.create({
   },
   blurContainer: {
     marginTop: 40,
-    borderTopWidth: 2,
+    borderTopWidth: 1,
     borderTopColor: "rgba(255,255,255,0.2)",
     borderBottomWidth: 1,
     borderBottomColor: "rgba(255,255,255,0.2)",
-    borderLeftWidth: 2,
+    borderLeftWidth: 1,
     borderLeftColor: "rgba(255,255,255,0.2)",
     borderRightWidth: 1,
     borderRightColor: "rgba(255,255,255,0.2)",
-
-    borderRadius: 4,
-    paddingVertical:20
+    paddingVertical:20,
+    borderBottomLeftRadius:10,
+    borderBottomRightRadius:10,
+    borderTopRightRadius:10
 
 
 

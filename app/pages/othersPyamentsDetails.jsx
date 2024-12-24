@@ -251,7 +251,7 @@ const styles = StyleSheet.create({
     amountDecimal: { color: "#b3b3b3" },
     right: { flexDirection: 'row', justifyContent: 'center',alignItems:"center", marginTop: 10, marginRight: 5,  backgroundColor:"rgba(0,0,0,0.04)" , borderWidth:1, borderColor:"rgba(0,0,0,0.2)", borderStyle:"dashed", paddingVertical:10 },
     addPaymentText: { marginTop: 2, marginRight: 4, fontSize: 15, color: '#737373', letterSpacing:2,},
-    paymentContainer: { marginTop: 10, borderRadius: 5, backgroundColor: '#ffffff'},
+    paymentContainer: { marginTop: 10, borderRadius: 5, backgroundColor: '#f2f2f2'},
 
     paymentText: { fontSize: 18, marginBottom: 5, fontWeight: '500', paddingHorizontal:10,paddingVertical:12,  },
     tableLeft: { color: '#737373', fontSize: 16, paddingLeft: 10, paddingBottom: 10 },
@@ -262,7 +262,7 @@ const styles = StyleSheet.create({
         borderRadius:1, borderColor:"rgba(0,0,0,0.2)", borderStyle:"dashed", borderWidth:1
      },
     popupMain: { position:"absolute", top: 0, backgroundColor: 'rgba(0,0,0,0.4)', justifyContent: 'center', alignItems: 'center', width:"110%", height:"110%",padding:20, zIndex:199999999 },
-    adminPopup: { width: '100%', padding: 20, backgroundColor: '#ffffff', borderRadius: 10, },
+    adminPopup: { width: '100%', padding: 20, backgroundColor: '#f2f2f2', borderRadius: 10, },
     popupTitle: { fontSize: 25, fontWeight: 'bold', marginBottom: 10, color:"#008080", letterSpacing:3, textAlign:"center" },
     popupDescription: { fontSize: 16, color: '#737373', marginBottom: 15, textAlign:"center" },
     otpContainer: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 15 },

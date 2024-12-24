@@ -20,14 +20,13 @@ export default function TabLayout() {
     <NavigationContainer>
     <Tabs
       screenOptions={{
-
         tabBarActiveTintColor: '#008080',
         tabBarStyle: {
           backgroundColor: '#f2f2f2',
           paddingTop: 5,
           paddingBottom: 5,
           height: 60,
-          elevation: 0
+          elevation: 0,
         },
         headerShown: false,
       }}

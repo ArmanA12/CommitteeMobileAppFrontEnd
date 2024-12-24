@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 13,
     backgroundColor: '#f2f2f2',
     position: "absolute",
-    top:15,
+    top:6,
     zIndex: 1000000
   },
   leftContainer: {

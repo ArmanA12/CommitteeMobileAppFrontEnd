@@ -4,7 +4,7 @@ import React from 'react'
 export default function Loader() {
   return (
     <View style={styles.loadingContainer}>
-      <ActivityIndicator size="large" color="#ffffff" />
+      <ActivityIndicator size="large" color="#f2f2f2" />
       <Text style={styles.loadingText}>Submiting...</Text>
     </View>
 
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   loadingText: {
-    color: '#ffffff',
+    color: '#f2f2f2',
     marginLeft: 10,
   },
 })

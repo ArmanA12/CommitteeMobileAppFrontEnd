@@ -68,7 +68,7 @@ export default function Home() {
                 <View>
 
                   <Text style={styles.totalAmount}>
-                    <Text style={{fontFamily: "Cairo-SemiBold",  letterSpacing: 3 }}>{totalAmount}</Text>
+                    <Text style={{fontFamily: "MartianMono_Condensed-ExtraBold",  letterSpacing: 3 }}>{totalAmount}</Text>
                   </Text>
                   <Text style={styles.totatext}><Text style={{ fontFamily: "Cairo-SemiBold" }}>Total Amount</Text></Text>
                 </View>
@@ -149,11 +149,11 @@ const styles = StyleSheet.create({
   },
   blurContainer: {
     marginTop: 40,
-    borderTopWidth: 1,
+    borderTopWidth: 2,
     borderTopColor: "rgba(255,255,255,0.2)",
     borderBottomWidth: 1,
     borderBottomColor: "rgba(255,255,255,0.2)",
-    borderLeftWidth: 1,
+    borderLeftWidth: 2,
     borderLeftColor: "rgba(255,255,255,0.2)",
     borderRightWidth: 1,
     borderRightColor: "rgba(255,255,255,0.2)",
@@ -225,7 +225,7 @@ const styles = StyleSheet.create({
     gap: 5,
     marginTop:8,
     position:"absolute",
-    top:325,
+    top:345,
   },
   amountDetails: {
     borderWidth: 1,

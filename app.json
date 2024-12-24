@@ -10,7 +10,7 @@
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#f2f2f2"
     },
     "ios": {
       "supportsTablet": true
@@ -18,7 +18,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#f2f2f2"
       },
       "permissions": [
         "android.permission.READ_EXTERNAL_STORAGE",
@@ -57,7 +57,9 @@
       [
         "expo-font",
         {
-          "fonts": ["./assets/fonts/Cairo-ExtraLight.ttf"]
+          "fonts": [
+            "./assets/fonts/Cairo-ExtraLight.ttf"
+          ]
         }
       ]
     ],
@@ -66,7 +68,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "3debf990-e8a2-4fc9-980e-f496d5f5acc6"
+        "projectId": "c8ed485f-d06f-4a96-b536-f01150f802fb"
       }
     }
   }

@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet ,StatusBar} from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { useNavigation, useRouter } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -41,6 +41,13 @@ export default function Home() {
   return (
 
     <View style={styles.container}>
+            <StatusBar
+        barStyle="light-content" 
+        backgroundColor="#008080" 
+        translucent={false} 
+      />
+
+
       <View>
         <PaymentSpeek />
 

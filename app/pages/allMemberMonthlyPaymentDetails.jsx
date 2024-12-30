@@ -293,7 +293,7 @@ inputMain: {
     borderStyle: 'dashed',
   },
   header: {
-    marginTop: 100,
+    marginTop: 70,
     textAlign: "center",
     letterSpacing: 2,
     fontSize: 18,

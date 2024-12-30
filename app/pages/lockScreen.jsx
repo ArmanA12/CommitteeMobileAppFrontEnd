@@ -284,7 +284,7 @@ const styles = StyleSheet.create({
     passwordButton: {
         width: "80%",
         backgroundColor: "#008080",
-        paddingVertical: 15,
+        paddingVertical: 18,
         paddingHorizontal: 20,
         marginTop: 40,
         borderWidth: 1,

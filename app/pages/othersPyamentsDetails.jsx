@@ -243,8 +243,8 @@ export default function OthersPaymentDetails() {
 
 const styles = StyleSheet.create({
     container: { flex: 1, backgroundColor: '#f2f2f2', padding: 16 },
-    header: { fontSize: 20, fontWeight: 'bold', marginTop: 80, textAlign: 'center', marginBottom: 10, color: '#008080' },
-    title: { textAlign: 'center', fontWeight: 'bold', fontSize: 23, color: "#008080", marginTop: 30 },
+    header: { fontSize: 20, fontWeight: 'bold', marginTop: 30, textAlign: 'center', marginBottom: 10, color: 'gray' },
+    title: { textAlign: 'center', letterSpacing:2, fontSize: 23, color: "#008080", marginTop: 30 },
     amountDetails: { borderWidth: 1, marginTop: 10, paddingHorizontal: 20, paddingVertical: 17, borderRadius: 17, borderColor: "rgba(0,0,0,0.03)", backgroundColor: "rgba(255,255,255,0.7)", marginBottom: 2},
     totalBalance: { fontFamily: "Cairo-SemiBold", fontSize: 20, letterSpacing: 3, color: "#000" },
     amount: { fontSize: 45, color: "#737373", letterSpacing: 2 },

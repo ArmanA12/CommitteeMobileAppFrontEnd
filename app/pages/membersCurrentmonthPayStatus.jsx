@@ -115,7 +115,7 @@ export default function CurrentStatus() {
         {item.profilePic ? (
           <View style={styles.imageContainer}>
             <Image
-            style={{ width: 50, height: 50, borderRadius: 100 , objectFit:"fill", padding:4, borderWidth:3, borderColor:"rgba(0,0,0,0.03)", borderStyle:"dashed", backgroundColor:"rgba(255,255,255,0.6)"}}
+            style={{ width: 50, height: 50, borderRadius: 100 , objectFit:"fill", padding:4, borderWidth:3, borderColor:"rgba(0,0,0,0.03)", borderStyle:"dashed", backgroundColor:"#fff"}}
             source={{ uri: item?.profilePic }}  />
           </View>
         ) : (
@@ -162,12 +162,11 @@ export default function CurrentStatus() {
     return (
         array.map((item, index) => {
             return (
-                <View key={index} style={{ flex: 1, alignItems: "center", paddingTop: 70 }}>
+                <View key={index} style={{ flex: 1, alignItems: "center", paddingTop: 50 }}>
                     <View style={{
                         height: 60,
-                        backgroundColor: "rgba(255,255,255,0.5)",
                         borderWidth: 1,
-                        borderColor: "rgba(0,0,0,0.06)",
+                        borderColor: "rgba(0,0,0,0.6)",
                         borderRadius: 10,
                         borderStyle: "dashed",
                         width: "90%"
@@ -212,7 +211,7 @@ export default function CurrentStatus() {
         </View>
       )}
 
-      <View style={{ marginTop: 100, marginBottom: 20 }}>
+      <View style={{ marginTop: 80, marginBottom: 20 }}>
         <Text style={{ letterSpacing: 2, fontSize: 20, textAlign: "center", color: "#404040" }}>
           {month} Payment Status
         </Text>
@@ -232,7 +231,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#f2f2f2',
   },
   item: {
     flexDirection: 'row',
@@ -245,6 +244,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(0,0,0,0.07)",
     borderStyle: 'dashed',
+    backgroundColor:"#fff"
   },
   imageContainer: {
     height: 60,
